@@ -11,13 +11,16 @@
         <%= link_to 'SIGN UP', new_user_registration_path, class: 'nav-item nav-link active' %>
       <% else %>
         <%= link_to 'SIGN OUT', destroy_user_session_path, method: "delete", class: 'nav-item nav-link active' %>
+        <%= link_to 'MY PROFILE', edit_user_registration_path, class: 'nav-item nav-link active' %>
         <a class="nav-item nav-link active" href="#">INBOX <span class="sr-only">(current)</span></a>
+
         </div>
-        <form class="form-inline" >
+        <form class="form-inline">
           <input class="form-control mr-sm-2" type="text" placeholder="Search for message ... ">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         </div>
+
       <% end %>
 
 
