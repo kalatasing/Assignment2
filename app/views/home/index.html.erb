@@ -1,0 +1,14 @@
+<div align="center">
+
+
+<% if !user_signed_in? %>
+  <h1>== WELCOME TO CODER CHAT ==</h1>
+  <%= link_to "Sing IN", user_session_path, class: "btn btn-primary" %>
+  <%= link_to "Sing UP", new_user_registration_path	, class: "btn btn-primary" %>
+<% else %>
+  HELLO THERE ... COMMING SOON
+<% end %>
+
+
+
+</div>
