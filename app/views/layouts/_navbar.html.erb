@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-inverse bg-inverse">
+<nav class="navbar navbar-expand-md navbar-inverse bg-inverse" xmlns="http://www.w3.org/1999/html">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,18 +12,22 @@
       <% else %>
         <%= link_to 'SIGN OUT', destroy_user_session_path, method: "delete", class: 'nav-item nav-link active' %>
         <%= link_to 'MY PROFILE', edit_user_registration_path, class: 'nav-item nav-link active' %>
+
         <a class="nav-item nav-link active" href="#">INBOX <span class="sr-only">(current)</span></a>
 
-        </div>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search for message ... ">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        </div>
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search for message ... ">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        <p class='nav-item nav-link active'> <%= "Signed in with #{current_user.email}" %> </p>
+
+
+    </div>
+
+
 
       <% end %>
-
-
+      </div>
 
 
 </nav>
