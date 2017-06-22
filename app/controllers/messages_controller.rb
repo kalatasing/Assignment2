@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :update_read_message, only: [:show]
 
   # GET /messages
   # GET /messages.json
@@ -33,7 +34,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-
+    update_sender_id
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
@@ -69,6 +70,12 @@ class MessagesController < ApplicationController
     end
   end
 
+  def update_read_message
+    @message[:read_status] = true
+    @message[:read_at] = Time.now
+    @message.save!
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
@@ -80,5 +87,9 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:title, :body, :sender_id, :recipient_id, :read_status, :read_at)
     end
 
+    def update_sender_id
+      @message[:sender_id] = current_user.id
+      @message.save!
+    end
 
 end

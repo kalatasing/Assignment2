@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Title</th>
-        <th>Body</th>
+      <th>Body</th>
       <th>Sender</th>
       <th>Recipient</th>
       <th>Read status</th>
@@ -17,17 +17,33 @@
 
   <tbody>
     <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.title %></td>
-        <td><%= message.body %></td>
-        <td><%= message.sender.email %></td>
-        <td><%= message.recipient.email %></td>
-        <td><%= message.read_status %></td>
-        <td><%= message.read_at %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+      <% if message.read_status != true%>
+          <tr style="font-weight:bold">
+            <td><%= message.title %></td>
+            <td><%= message.body %></td>
+            <td><%= message.sender.email %></td>
+            <td><%= message.recipient.email %></td>
+            <td><%= message.read_status %></td>
+            <td><%= message.read_at %></td>
+            <td><%= link_to 'Show', message %></td>
+            <td><%# link_to 'Show', :controller => "message", :action => "update_read_message", :id => message.id  %></td>
+            <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% else %>
+          <tr>
+            <td><%= message.title %></td>
+            <td><%= message.body %></td>
+            <td><%= message.sender.email %></td>
+            <td><%= message.recipient.email %></td>
+            <td><%= message.read_status %></td>
+            <td><%= message.read_at %></td>
+            <td><%= link_to 'Show', message %></td>
+            <td><%# link_to 'Show', :controller => "message", :action => "update_read_message", :id => message.id  %></td>
+            <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+
     <% end %>
   </tbody>
 </table>
